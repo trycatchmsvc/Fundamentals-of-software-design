@@ -8,70 +8,10 @@
 #include <sstream>
 #include <memory>
 
-
-class ObjectManager {
-private:
-	std::vector<Object> objects;
-
+class Point2D {
 public:
-	size_t count() const;
-
-	void parse_all_objects(std::vector<std::string>& vector_string) {
-		for (const auto& item : vector_string)
-		{
-			if (parse_format1(item) != nullptr) {
-				this->objects.push_back(*parse_format1(item));
-			}
-			else {
-				this->objects.push_back(*parse_format2(item));
-			}
-		}
-	};
-
-	std::unique_ptr<Object> parse_format1(const std::string& str) {
-		std::regex rgx(R"(\s*\"([a-zA-Z]+)\"\s*([\d.]+)\s*([\d.]+))");
-		std::smatch match;
-		if (std::regex_search(str, match, rgx)) {
-			return std::make_unique<Object>(match[1].str(), match[2].str(), match[3].str());
-		}
-		else {
-			return nullptr;
-		}
-	}
-
-	std::unique_ptr<Object> parse_format2(const std::string& str) {
-		std::regex rgx(R"(\s*([\d.]+)\s*([\d.]+)\s*\"([a-zA-Z]+)\")");
-		std::smatch match;
-		if (std::regex_search(str, match, rgx)) {
-			return std::make_unique<Object>(match[3].str(), match[1].str(), match[2].str());
-		}
-		else {
-			return nullptr;
-		}
-	}
-
-	static std::vector<std::string> get_filters() {
-		std::vector<std::string> filters; std::string color, enter_colors;
-		std::cout << "Enter colors: ";
-		std::getline(std::cin, enter_colors);
-		std::stringstream ss(enter_colors);
-		while (ss >> color) {
-			filters.push_back(to_lower(color));
-		}
-		return filters;
-	}
-
-	static void print_object(std::vector<Object>& object_vector) {
-		std::vector<std::string> color_filters = get_filters();
-
-		for (Object& object : object_vector) {
-			if (std::find(color_filters.begin(), color_filters.end(), object.get_color()) != color_filters.end()) {
-				std::cout << object << std::endl;
-
-			}
-		}
-	}
-
+	float pos_x;
+	float pos_y;
 };
 
 enum Color :int {
@@ -85,18 +25,11 @@ static const std::map<std::string, Color> ColorMap = {
 	{"green",Color::green},
 	{"blue", Color::blue},
 };
-
 static const std::map <Color, std::string> ReverseColorMap = {
 	{Color::red, "red"},
 	{Color::green, "green"},
 	{Color::blue, "blue"},
 	{Color::value, "value"}
-};
-
-class Point2D {
-public:
-	float pos_x;
-	float pos_y;
 };
 
 class Object {
@@ -121,28 +54,125 @@ public:
 		return ReverseColorMap.at(color);
 	}
 
-
 	friend std::ostream& operator<<(std::ostream& os, const Object& obj); //Дружественная функция переопределения оператора 
 };
 
-std::ostream& operator<<(std::ostream& os, const Object& obj) {
+std::ostream& operator<<(std::ostream& os, const Object& obj) { // Перегрузка оператора вывода в поток
 	os << "Color: " << ReverseColorMap.at(obj.color) <<
 		"\tpos_x: " << obj.position.pos_x << "\tpos_y: " << obj.position.pos_y << "\n";
 	return os;
 }
 
-std::string to_lower(std::string _str) {
-	for (char& c : _str) c = std::tolower(c);
-	return _str;
-}
 
-std::vector<std::string> read_file(const std::string& file_name) {
+class ObjectManager {
+private:
+	std::vector<Object> objects;
+
+public:
+	size_t count() {
+		return objects.size();
+	}
+
+	void addObject(std::unique_ptr<Object> obj) {
+		objects.push_back(std::move(*obj));
+	}
+
+	friend class Application;
+};
+
+class ObjectParser {
+public:
+
+	std::unique_ptr<Object> parse_object(const std::string & _string) {
+		auto obj1 = parse_format1(_string);
+		if (obj1 != nullptr) 
+		{
+			return obj1;
+		}
+		else 
+		{
+			return parse_format2(_string);
+		}
+	};
+
+	static std::string to_lower(std::string &_str) {
+		for (char& c : _str) c = std::tolower(c);
+		return _str;
+	}
+
+private:
+
+	std::unique_ptr<Object> parse_format1(const std::string& str) {
+		std::regex rgx(R"(\s*\"([a-zA-Z]+)\"\s*([\d.]+)\s*([\d.]+))");
+		std::smatch match;
+		if (std::regex_search(str, match, rgx)) {
+			return std::make_unique<Object>(match[1].str(), match[2].str(), match[3].str());
+		}
+		else {
+			return nullptr;
+		}
+	}
+
+	std::unique_ptr<Object> parse_format2(const std::string& str) {
+		std::regex rgx(R"(\s*([\d.]+)\s*([\d.]+)\s*\"([a-zA-Z]+)\")");
+		std::smatch match;
+		if (std::regex_search(str, match, rgx)) {
+			return std::make_unique<Object>(match[3].str(), match[1].str(), match[2].str());
+		}
+		else {
+			return nullptr;
+		}
+	}
+
+};
+
+class ConsoleInterface {
+public:
+	static std::vector<std::string> get_filters() {
+		std::vector<std::string> filters; std::string color, enter_colors;
+		std::cout << "Enter colors: ";
+		std::getline(std::cin, enter_colors);
+		std::stringstream ss(enter_colors);
+		while (ss >> color) {
+			filters.push_back(ObjectParser::to_lower(color));
+		}
+		return filters;
+	}
+
+	static void print_object(const std::vector<std::string>& color_filters, std::vector<Object>& objects) {
+		for (Object& object : objects)
+		{
+			if (std::find(color_filters.begin(), color_filters.end(), object.get_color()) != color_filters.end())
+			{
+				std::cout << object << std::endl;
+			}
+		}
+	}
+};
+
+class Application {
+public:
+	void run(const std::vector<std::string> &vector) {
+		std::vector<std::string> color_filter = ui.get_filters();
+		for (const std::string line : vector) {
+			manager.addObject(parser.parse_object(line));
+		}
+		ui.print_object(color_filter, manager.objects);
+	}
+
+private:
+	ObjectManager manager;
+	ObjectParser parser;
+	ConsoleInterface ui;
+};
+
+std::vector<std::string> read_file(const std::string& file_name) { // Чтение строк
 	std::vector<std::string> file_lines;
 	std::ifstream fin(file_name);
 	if (fin.is_open() != true) { return file_lines; }; // Проверяем открылся ли поток, иначе возвращаем пустой вектор
 	for (std::string line; std::getline(fin, line); ) {
 		if (!line.empty()) {
-			file_lines.push_back(to_lower(line));
+			file_lines.push_back(ObjectParser::to_lower(line));
 		}
 	}
 	return file_lines;
@@ -152,7 +182,7 @@ int main() {
 	std::vector <std::string> vector;
 	vector = read_file("test.txt");
 	
-	
-
+	Application app;
+	app.run(vector);
 	return 0;
 }
