@@ -45,7 +45,13 @@ public:
 	}
 
 	Object(std::string _color, std::string _pos_x, std::string _pos_y) { // Дополнительный конструктор
-		this->color = ColorMap.at(_color);
+		try {
+			this->color = ColorMap.at(_color);
+		}
+		catch (const std::out_of_range &ex) {
+			throw ;
+		}
+		
 		this->position.pos_x = std::stof(_pos_x);
 		this->position.pos_y = std::stof(_pos_y);
 	};
@@ -74,7 +80,9 @@ public:
 	}
 
 	void addObject(std::unique_ptr<Object> obj) {
-		objects.push_back(std::move(*obj));
+		if (obj.get() != nullptr) {
+			objects.push_back(std::move(*obj));
+		}
 	}
 
 	friend class Application;
@@ -89,10 +97,15 @@ public:
 		{
 			return obj1;
 		}
-		else 
+		else if((obj1 = parse_format1(_string)) != nullptr)
 		{
-			return parse_format2(_string);
+			return obj1;
 		}
+		else {
+			return parse_format3(_string);
+		}
+
+
 	};
 
 	static std::string to_lower(std::string &_str) {
@@ -103,9 +116,12 @@ public:
 private:
 
 	std::unique_ptr<Object> parse_format1(const std::string& str) {
-		std::regex rgx(R"(\s*\"([a-zA-Z]+)\"\s*([\d.]+)\s*([\d.]+))");
+		std::regex rgx(R"(^\s*\"([a-zA-Z]+)\"\s*(\d+(?:\.\d+)?)\s*(\d+(?:\.\d+)?)\s*$)");
 		std::smatch match;
 		if (std::regex_search(str, match, rgx)) {
+			if (ColorMap.find(match[1].str()) == ColorMap.end()) {
+				return nullptr;
+			}
 			return std::make_unique<Object>(match[1].str(), match[2].str(), match[3].str());
 		}
 		else {
@@ -114,9 +130,12 @@ private:
 	}
 
 	std::unique_ptr<Object> parse_format2(const std::string& str) {
-		std::regex rgx(R"(\s*([\d.]+)\s*([\d.]+)\s*\"([a-zA-Z]+)\")");
+		std::regex rgx(R"(\s*(\d+(?:\.\d+)?)\s*(\d+(?:\.\d+)?)\s*\"([a-zA-Z]+)\")");
 		std::smatch match;
 		if (std::regex_search(str, match, rgx)) {
+			if (ColorMap.find(match[3].str()) == ColorMap.end()) {
+				return nullptr;
+			}
 			return std::make_unique<Object>(match[3].str(), match[1].str(), match[2].str());
 		}
 		else {
@@ -124,6 +143,19 @@ private:
 		}
 	}
 
+	std::unique_ptr<Object> parse_format3(const std::string& str) {
+		std::regex rgx(R"(\s*(\d+(?:\.\d+)?)\s*"([a-zA-Z]+)\"\s*(\d+(?:\.\d+)?)\s*$)");
+		std::smatch match;
+		if (std::regex_search(str, match, rgx)) {
+			if (ColorMap.find(match[2].str()) == ColorMap.end()) {
+				return nullptr;
+			}
+			return std::make_unique<Object>(match[2].str(), match[1].str(), match[3].str());
+		}
+		else {
+			return nullptr;
+		}
+	}
 };
 
 class ConsoleInterface {
@@ -152,9 +184,9 @@ public:
 
 class Application {
 public:
-	void run(const std::vector<std::string> &vector) {
+	void run(const std::vector<std::string> &vector_file) {
 		std::vector<std::string> color_filter = ui.get_filters();
-		for (const std::string line : vector) {
+		for (const std::string line : vector_file) {
 			manager.addObject(parser.parse_object(line));
 		}
 		ui.print_object(color_filter, manager.objects);
@@ -182,7 +214,10 @@ int main() {
 	std::vector <std::string> vector;
 	vector = read_file("test.txt");
 	
+
+
 	Application app;
 	app.run(vector);
 	return 0;
 }
+
