@@ -1,8 +1,11 @@
 #pragma once
 #include <string>
+#include <memory>
+#include <vector>
+#include <ostream>
 #include <map>
 
-enum Color :int;
+enum Color :uint8_t;
 extern const std::map<std::string, Color> ColorMap;
 extern const std::map <Color, std::string> ReverseColorMap;
 
@@ -18,7 +21,7 @@ private:
     Point2D position;
 public:
     Object();
-    Object(std::string _color, std::string _pos_x, std::string _pos_y);
+    Object(const std::string & _color, const std::string & _pos_x, const std::string & _pos_y);
     std::string get_color();
     friend std::ostream& operator<<(std::ostream& os, const Object& obj);
 };
@@ -27,7 +30,6 @@ class ObjectManager {
 private:
     std::vector<Object> objects;
 public:
-    size_t count();
     void addObject(std::unique_ptr<Object> obj);
     friend class Application;
 };
@@ -54,5 +56,5 @@ private:
     ObjectParser parser;
     ConsoleInterface ui;
 public:
-    void run(const std::vector<std::string>& vector_file);
+    void run(const std::vector<std::string> & vector_file);
 };

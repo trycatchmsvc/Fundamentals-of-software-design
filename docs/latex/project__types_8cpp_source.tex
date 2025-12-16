@@ -1,0 +1,77 @@
+\doxysection{project\+\_\+types.\+cpp}
+\hypertarget{project__types_8cpp_source}{}\label{project__types_8cpp_source}\mbox{\hyperlink{project__types_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <regex>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{projects__types_8h}{projects\_types.h}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78}{Color}}\ :uint8\_t\ \ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78aace9033470c7bfe9523c814271251908}{red}}\ =\ 0,}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a6aa25890c44e0aac424e56338abe47ca}{green}},}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a8f5fa6b484ac7e2a97943d915cf224e2}{blue}},}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a97de9ab6885342a574053b8f64a563a9}{value}}}
+\DoxyCodeLine{00017\ \};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{const}\ std::map<std::string,\ Color>\ \mbox{\hyperlink{project__types_8cpp_a386014f2cb7278f0caa94bb8ec70840a}{ColorMap}}\ =\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \{\textcolor{stringliteral}{"{}red"{}},\mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78aace9033470c7bfe9523c814271251908}{Color::red}}\},}
+\DoxyCodeLine{00021\ \ \ \ \ \{\textcolor{stringliteral}{"{}green"{}},\mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a6aa25890c44e0aac424e56338abe47ca}{Color::green}}\},}
+\DoxyCodeLine{00022\ \ \ \ \ \{\textcolor{stringliteral}{"{}blue"{}},\ \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a8f5fa6b484ac7e2a97943d915cf224e2}{Color::blue}}\},}
+\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00024\ \textcolor{keyword}{const}\ std::map\ <Color,\ std::string>\ \mbox{\hyperlink{project__types_8cpp_ab452930e5e4f1e5ac14b2354a8001d0b}{ReverseColorMap}}\ =\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \{\mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78aace9033470c7bfe9523c814271251908}{Color::red}},\ \textcolor{stringliteral}{"{}red"{}}\},}
+\DoxyCodeLine{00026\ \ \ \ \ \{\mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a6aa25890c44e0aac424e56338abe47ca}{Color::green}},\ \textcolor{stringliteral}{"{}green"{}}\},}
+\DoxyCodeLine{00027\ \ \ \ \ \{\mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a8f5fa6b484ac7e2a97943d915cf224e2}{Color::blue}},\ \textcolor{stringliteral}{"{}blue"{}}\},}
+\DoxyCodeLine{00028\ \ \ \ \ \{\mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a97de9ab6885342a574053b8f64a563a9}{Color::value}},\ \textcolor{stringliteral}{"{}value"{}}\}}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \mbox{\hyperlink{classObject_a40860402e64d8008fb42329df7097cdb}{Object::Object}}()\ \{\ \textcolor{comment}{//Default\ constructor}}
+\DoxyCodeLine{00033\ \ \ \ \ this-\/>\mbox{\hyperlink{classObject_a3ed85d6e0b0b62ff2501d421cb55c5e9}{color}}\ =\ \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a97de9ab6885342a574053b8f64a563a9}{Color::value}};}
+\DoxyCodeLine{00034\ \ \ \ \ this-\/>\mbox{\hyperlink{classObject_af8012fa7284fbc4ff5f03264179ee070}{position}}.\mbox{\hyperlink{classPoint2D_a97c1cb6065852936c405c51f36d1751b}{pos\_x}}\ =\ 0;}
+\DoxyCodeLine{00035\ \ \ \ \ this-\/>\mbox{\hyperlink{classObject_af8012fa7284fbc4ff5f03264179ee070}{position}}.\mbox{\hyperlink{classPoint2D_a279adf42d02e1f16ea2dc66f55cd8cbf}{pos\_y}}\ =\ 0;}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \mbox{\hyperlink{classObject_a40860402e64d8008fb42329df7097cdb}{Object::Object}}(\textcolor{keyword}{const}\ std::string\ \&\ \_color,\ \textcolor{keyword}{const}\ std::string\ \&\ \_pos\_x,\ \textcolor{keyword}{const}\ std::string\ \&\ \_pos\_y)\ \{\ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{classObject_a3ed85d6e0b0b62ff2501d421cb55c5e9}{color}}\ =\ \mbox{\hyperlink{projects__types_8h_a386014f2cb7278f0caa94bb8ec70840a}{ColorMap}}.at(\_color);}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ std::out\_of\_range\&\ ex)\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ this-\/>\mbox{\hyperlink{classObject_af8012fa7284fbc4ff5f03264179ee070}{position}}.\mbox{\hyperlink{classPoint2D_a97c1cb6065852936c405c51f36d1751b}{pos\_x}}\ =\ std::stof(\_pos\_x);}
+\DoxyCodeLine{00048\ \ \ \ \ this-\/>\mbox{\hyperlink{classObject_af8012fa7284fbc4ff5f03264179ee070}{position}}.\mbox{\hyperlink{classPoint2D_a279adf42d02e1f16ea2dc66f55cd8cbf}{pos\_y}}\ =\ std::stof(\_pos\_y);}
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classObject_a2abde2f66a6596b9b46845166a425c4d}{Object::get\_color}}()\ -\/>\ std::string}
+\DoxyCodeLine{00052\ \ \{\ \textcolor{comment}{//Getter}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{project__types_8cpp_ab452930e5e4f1e5ac14b2354a8001d0b}{ReverseColorMap}}.at(color);}
+\DoxyCodeLine{00054\ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ std::ostream\&\ \mbox{\hyperlink{project__types_8cpp_a0364760b87bbea8aeb0abbe482c2b18c}{operator<<}}(std::ostream\&\ output\_stream,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObject}{Object}}\&\ obj)\ \{\ \textcolor{comment}{//\ Friend\ function\ for\ COUT}}
+\DoxyCodeLine{00058\ \ \ \ \ output\_stream\ <<\ \textcolor{stringliteral}{"{}Color:\ "{}}\ <<\ \mbox{\hyperlink{project__types_8cpp_ab452930e5e4f1e5ac14b2354a8001d0b}{ReverseColorMap}}.at(obj.\mbox{\hyperlink{classObject_a3ed85d6e0b0b62ff2501d421cb55c5e9}{color}})\ <<}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)tpos\_x:\ "{}}\ <<\ obj.\mbox{\hyperlink{classObject_af8012fa7284fbc4ff5f03264179ee070}{position}}.\mbox{\hyperlink{classPoint2D_a97c1cb6065852936c405c51f36d1751b}{pos\_x}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)tpos\_y:\ "{}}\ <<\ obj.\mbox{\hyperlink{classObject_af8012fa7284fbc4ff5f03264179ee070}{position}}.\mbox{\hyperlink{classPoint2D_a279adf42d02e1f16ea2dc66f55cd8cbf}{pos\_y}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ output\_stream;}
+\DoxyCodeLine{00061\ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classObjectManager_a06b9c9ec8356cecbda3afd5403031424}{ObjectManager::addObject}}(std::unique\_ptr<Object>\ obj)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{if}\ (obj)\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classObjectManager_a0c820661c86293c4c9e58812629e457b}{objects}}.push\_back(*obj);}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ }
+
+\end{DoxyCode}

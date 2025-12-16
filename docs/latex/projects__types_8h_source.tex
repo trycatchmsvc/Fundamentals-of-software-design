@@ -1,0 +1,65 @@
+\doxysection{projects\+\_\+types.\+h}
+\hypertarget{projects__types_8h_source}{}\label{projects__types_8h_source}\mbox{\hyperlink{projects__types_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <ostream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78}{Color}}\ :uint8\_t;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ std::map<std::string,\ Color>\ \mbox{\hyperlink{projects__types_8h_a386014f2cb7278f0caa94bb8ec70840a}{ColorMap}};}
+\DoxyCodeLine{00010\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ std::map\ <Color,\ std::string>\ \mbox{\hyperlink{projects__types_8h_ab452930e5e4f1e5ac14b2354a8001d0b}{ReverseColorMap}};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPoint2D}{Point2D}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPoint2D_a97c1cb6065852936c405c51f36d1751b}{pos\_x}};}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classPoint2D_a279adf42d02e1f16ea2dc66f55cd8cbf}{pos\_y}};}
+\DoxyCodeLine{00016\ \};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classObject}{Object}}\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78}{Color}}\ \mbox{\hyperlink{classObject_a3ed85d6e0b0b62ff2501d421cb55c5e9}{color}};}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classPoint2D}{Point2D}}\ \mbox{\hyperlink{classObject_af8012fa7284fbc4ff5f03264179ee070}{position}};}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classObject_a40860402e64d8008fb42329df7097cdb}{Object}}();}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classObject_a40860402e64d8008fb42329df7097cdb}{Object}}(\textcolor{keyword}{const}\ std::string\ \&\ \_color,\ \textcolor{keyword}{const}\ std::string\ \&\ \_pos\_x,\ \textcolor{keyword}{const}\ std::string\ \&\ \_pos\_y);}
+\DoxyCodeLine{00025\ \ \ \ \ std::string\ \mbox{\hyperlink{classObject_a2abde2f66a6596b9b46845166a425c4d}{get\_color}}();}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{friend}\ std::ostream\&\ \mbox{\hyperlink{classObject_ab61122231c92c4dcc8c7d1479044815e}{operator<<}}(std::ostream\&\ os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classObject}{Object}}\&\ obj);}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classObjectManager}{ObjectManager}}\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ std::vector<Object>\ \mbox{\hyperlink{classObjectManager_a0c820661c86293c4c9e58812629e457b}{objects}};}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classObjectManager_a06b9c9ec8356cecbda3afd5403031424}{addObject}}(std::unique\_ptr<Object>\ obj);}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classApplication}{Application}};}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classObjectParser}{ObjectParser}}\ \{}
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ std::unique\_ptr<Object>\ \mbox{\hyperlink{classObjectParser_a87b4fc23fd4daaad27b8cdc43bda9e78}{parse\_object}}(\textcolor{keyword}{const}\ std::string\&\ \_string);}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ \mbox{\hyperlink{classObjectParser_a5f8c21ebbedef75491160b6f3bf43054}{to\_lower}}(std::string\&\ \_str);}
+\DoxyCodeLine{00041\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00042\ \ \ \ \ std::unique\_ptr<Object>\ \mbox{\hyperlink{classObjectParser_ac5091b94818d7681a47b3f3e66ebfdd7}{parse\_format1}}(\textcolor{keyword}{const}\ std::string\&\ str);}
+\DoxyCodeLine{00043\ \ \ \ \ std::unique\_ptr<Object>\ \mbox{\hyperlink{classObjectParser_a623251aafb60ea2827e1685fcf188e1f}{parse\_format2}}(\textcolor{keyword}{const}\ std::string\&\ str);}
+\DoxyCodeLine{00044\ \ \ \ \ std::unique\_ptr<Object>\ \mbox{\hyperlink{classObjectParser_a84bf23f874fa9cba9ca71480367e3241}{parse\_format3}}(\textcolor{keyword}{const}\ std::string\&\ str);}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classConsoleInterface}{ConsoleInterface}}\ \{}
+\DoxyCodeLine{00048\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<std::string>\ \mbox{\hyperlink{classConsoleInterface_a1ae808d1cea5c00dc6bd1ee336d151fe}{get\_filters}}();}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classConsoleInterface_a1872175f4d29cd2e2a130c0692876dda}{print\_object}}(\textcolor{keyword}{const}\ std::vector<std::string>\&\ color\_filters,\ std::vector<Object>\&\ objects);}
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classApplication}{Application}}\ \{}
+\DoxyCodeLine{00054\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classObjectManager}{ObjectManager}}\ \mbox{\hyperlink{classApplication_a70c9f9e67b7309a324acd9e3a5219845}{manager}};}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classObjectParser}{ObjectParser}}\ \mbox{\hyperlink{classApplication_a159f2c129123fc8c30523a3139725337}{parser}};}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classConsoleInterface}{ConsoleInterface}}\ \mbox{\hyperlink{classApplication_a0f09f181c0055ffa09e66d4147037e33}{ui}};}
+\DoxyCodeLine{00058\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classApplication_aa1c76eea713886ac5ff74b9dddced08e}{run}}(\textcolor{keyword}{const}\ std::vector<std::string>\ \&\ vector\_file);}
+\DoxyCodeLine{00060\ \};}
+
+\end{DoxyCode}

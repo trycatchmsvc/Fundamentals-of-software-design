@@ -1,0 +1,67 @@
+\doxysection{parser.\+cpp}
+\hypertarget{parser_8cpp_source}{}\label{parser_8cpp_source}\mbox{\hyperlink{parser_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{projects__types_8h}{projects\_types.h}}"{}}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <regex>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classObjectParser_a87b4fc23fd4daaad27b8cdc43bda9e78}{ObjectParser::parse\_object}}(\textcolor{keyword}{const}\ std::string\&\ \_string)\ -\/>\ std::unique\_ptr<Object>\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{auto}\ obj1\ =\ parse\_format2(\_string);}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordflow}{if}\ (obj1)\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ obj1;}
+\DoxyCodeLine{00011\ \ \ \ \ \}}
+\DoxyCodeLine{00012\ \ \ \ \ }
+\DoxyCodeLine{00013\ \ \ \ \ obj1\ =\ parse\_format1(\_string);}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordflow}{if}\ (obj1)\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ obj1;}
+\DoxyCodeLine{00016\ \ \ \ \ \}}
+\DoxyCodeLine{00017\ \ \ \ \ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{return}\ parse\_format3(\_string);}
+\DoxyCodeLine{00019\ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ std::unique\_ptr<Object>\ \mbox{\hyperlink{classObjectParser_ac5091b94818d7681a47b3f3e66ebfdd7}{ObjectParser::parse\_format1}}(\textcolor{keyword}{const}\ std::string\&\ str)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ std::regex\ rgx(R\textcolor{stringliteral}{"{}(\string^\(\backslash\)s*\(\backslash\)"{}([a-\/zA-\/Z]+)\(\backslash\)"{}\(\backslash\)s*(\(\backslash\)d+(?:\(\backslash\).\(\backslash\)d+)?)\(\backslash\)s*(\(\backslash\)d+(?:\(\backslash\).\(\backslash\)d+)?)\(\backslash\)s*\$)"{});}}
+\DoxyCodeLine{00024\ \textcolor{stringliteral}{\ \ \ \ std::smatch\ match;}}
+\DoxyCodeLine{00025\ \textcolor{stringliteral}{\ \ \ \ }\textcolor{keywordflow}{if}\ (std::regex\_search(str,\ match,\ rgx))\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{projects__types_8h_a386014f2cb7278f0caa94bb8ec70840a}{ColorMap}}.find(match[1].str())\ ==\ \mbox{\hyperlink{projects__types_8h_a386014f2cb7278f0caa94bb8ec70840a}{ColorMap}}.end())\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_unique<Object>(match[1].str(),\ match[2].str(),\ match[3].str());}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00032\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ std::unique\_ptr<Object>\ \mbox{\hyperlink{classObjectParser_a623251aafb60ea2827e1685fcf188e1f}{ObjectParser::parse\_format2}}(\textcolor{keyword}{const}\ std::string\&\ str)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ std::regex\ rgx(R\textcolor{stringliteral}{"{}(\(\backslash\)s*(\(\backslash\)d+(?:\(\backslash\).\(\backslash\)d+)?)\(\backslash\)s*(\(\backslash\)d+(?:\(\backslash\).\(\backslash\)d+)?)\(\backslash\)s*\(\backslash\)"{}([a-\/zA-\/Z]+)\(\backslash\)"{})"{});}}
+\DoxyCodeLine{00036\ \textcolor{stringliteral}{\ \ \ \ std::smatch\ match;}}
+\DoxyCodeLine{00037\ \textcolor{stringliteral}{\ \ \ \ }\textcolor{keywordflow}{if}\ (std::regex\_search(str,\ match,\ rgx))\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{projects__types_8h_a386014f2cb7278f0caa94bb8ec70840a}{ColorMap}}.find(match[3].str())\ ==\ \mbox{\hyperlink{projects__types_8h_a386014f2cb7278f0caa94bb8ec70840a}{ColorMap}}.end())\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_unique<Object>(match[3].str(),\ match[1].str(),\ match[2].str());}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00044\ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ std::unique\_ptr<Object>\ \mbox{\hyperlink{classObjectParser_a84bf23f874fa9cba9ca71480367e3241}{ObjectParser::parse\_format3}}(\textcolor{keyword}{const}\ std::string\&\ str)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ std::regex\ rgx(R\textcolor{stringliteral}{"{}(\(\backslash\)s*(\(\backslash\)d+(?:\(\backslash\).\(\backslash\)d+)?)\(\backslash\)s*"{}([a-\/zA-\/Z]+)\(\backslash\)"{}\(\backslash\)s*(\(\backslash\)d+(?:\(\backslash\).\(\backslash\)d+)?)\(\backslash\)s*\$)"{});}}
+\DoxyCodeLine{00048\ \textcolor{stringliteral}{\ \ \ \ std::smatch\ match;}}
+\DoxyCodeLine{00049\ \textcolor{stringliteral}{\ \ \ \ }\textcolor{keywordflow}{if}\ (std::regex\_search(str,\ match,\ rgx))\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{projects__types_8h_a386014f2cb7278f0caa94bb8ec70840a}{ColorMap}}.find(match[2].str())\ ==\ \mbox{\hyperlink{projects__types_8h_a386014f2cb7278f0caa94bb8ec70840a}{ColorMap}}.end())\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_unique<Object>(match[2].str(),\ match[1].str(),\ match[3].str());}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ std::string\ \mbox{\hyperlink{classObjectParser_a5f8c21ebbedef75491160b6f3bf43054}{ObjectParser::to\_lower}}(std::string\&\ \_str)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ std::transform(\_str.begin(),\ \_str.end(),\ \_str.begin(),}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [](\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ c)\ \{\ return\ std::tolower(c);\ \});}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ \_str;}
+\DoxyCodeLine{00062\ \}}
+
+\end{DoxyCode}

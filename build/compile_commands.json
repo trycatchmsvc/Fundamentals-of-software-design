@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/anton/Fundamentals-of-software-design/build",
+  "command": "/usr/bin/c++  -I/home/anton/Fundamentals-of-software-design -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/app.dir/main.cpp.o -c /home/anton/Fundamentals-of-software-design/main.cpp",
+  "file": "/home/anton/Fundamentals-of-software-design/main.cpp",
+  "output": "CMakeFiles/app.dir/main.cpp.o"
+},
+{
+  "directory": "/home/anton/Fundamentals-of-software-design/build",
+  "command": "/usr/bin/c++  -I/home/anton/Fundamentals-of-software-design -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/app.dir/project_types.cpp.o -c /home/anton/Fundamentals-of-software-design/project_types.cpp",
+  "file": "/home/anton/Fundamentals-of-software-design/project_types.cpp",
+  "output": "CMakeFiles/app.dir/project_types.cpp.o"
+},
+{
+  "directory": "/home/anton/Fundamentals-of-software-design/build",
+  "command": "/usr/bin/c++  -I/home/anton/Fundamentals-of-software-design -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/app.dir/parser.cpp.o -c /home/anton/Fundamentals-of-software-design/parser.cpp",
+  "file": "/home/anton/Fundamentals-of-software-design/parser.cpp",
+  "output": "CMakeFiles/app.dir/parser.cpp.o"
+},
+{
+  "directory": "/home/anton/Fundamentals-of-software-design/build",
+  "command": "/usr/bin/c++  -I/home/anton/Fundamentals-of-software-design -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/app.dir/console_interface.cpp.o -c /home/anton/Fundamentals-of-software-design/console_interface.cpp",
+  "file": "/home/anton/Fundamentals-of-software-design/console_interface.cpp",
+  "output": "CMakeFiles/app.dir/console_interface.cpp.o"
+},
+{
+  "directory": "/home/anton/Fundamentals-of-software-design/build",
+  "command": "/usr/bin/c++  -I/home/anton/Fundamentals-of-software-design -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/app.dir/application.cpp.o -c /home/anton/Fundamentals-of-software-design/application.cpp",
+  "file": "/home/anton/Fundamentals-of-software-design/application.cpp",
+  "output": "CMakeFiles/app.dir/application.cpp.o"
+}
+]

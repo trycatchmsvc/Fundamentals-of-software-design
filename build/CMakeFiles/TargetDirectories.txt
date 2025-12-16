@@ -1,0 +1,3 @@
+/home/anton/Fundamentals-of-software-design/build/CMakeFiles/app.dir
+/home/anton/Fundamentals-of-software-design/build/CMakeFiles/edit_cache.dir
+/home/anton/Fundamentals-of-software-design/build/CMakeFiles/rebuild_cache.dir

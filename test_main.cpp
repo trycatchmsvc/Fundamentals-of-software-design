@@ -3,10 +3,10 @@
 #include <boost/test/included/unit_test.hpp>
 #include "projects_types.h"
 #include "project_types.cpp"
+#include "parser.cpp"
 
 #include <sstream>
 #include <memory>
-
 
 
 BOOST_AUTO_TEST_SUITE(TestObjectParser)

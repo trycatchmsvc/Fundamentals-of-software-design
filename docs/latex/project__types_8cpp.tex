@@ -1,0 +1,119 @@
+\doxysection{project\+\_\+types.\+cpp File Reference}
+\hypertarget{project__types_8cpp}{}\label{project__types_8cpp}\index{project\_types.cpp@{project\_types.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$regex$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include "{}projects\+\_\+types.\+h"{}}\newline
+Include dependency graph for project\+\_\+types.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{project__types_8cpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{project__types_8cpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78}{Color}} \+: uint8\+\_\+t \{ \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78aace9033470c7bfe9523c814271251908}{red}} = 0
+, \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a6aa25890c44e0aac424e56338abe47ca}{green}}
+, \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a8f5fa6b484ac7e2a97943d915cf224e2}{blue}}
+, \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a97de9ab6885342a574053b8f64a563a9}{value}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{project__types_8cpp_a0364760b87bbea8aeb0abbe482c2b18c}{operator$<$$<$}} (std\+::ostream \&output\+\_\+stream, const \mbox{\hyperlink{classObject}{Object}} \&obj)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::map$<$ std\+::string, \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78}{Color}} $>$ \mbox{\hyperlink{project__types_8cpp_a386014f2cb7278f0caa94bb8ec70840a}{Color\+Map}}
+\item 
+const std\+::map$<$ \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78}{Color}}, std\+::string $>$ \mbox{\hyperlink{project__types_8cpp_ab452930e5e4f1e5ac14b2354a8001d0b}{Reverse\+Color\+Map}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78}\label{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78} 
+\index{project\_types.cpp@{project\_types.cpp}!Color@{Color}}
+\index{Color@{Color}!project\_types.cpp@{project\_types.cpp}}
+\doxysubsubsection{\texorpdfstring{Color}{Color}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78}{Color}} \+: uint8\+\_\+t}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{red@{red}!project\_types.cpp@{project\_types.cpp}}\index{project\_types.cpp@{project\_types.cpp}!red@{red}}}\Hypertarget{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78aace9033470c7bfe9523c814271251908}\label{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78aace9033470c7bfe9523c814271251908} 
+red&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{green@{green}!project\_types.cpp@{project\_types.cpp}}\index{project\_types.cpp@{project\_types.cpp}!green@{green}}}\Hypertarget{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a6aa25890c44e0aac424e56338abe47ca}\label{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a6aa25890c44e0aac424e56338abe47ca} 
+green&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{blue@{blue}!project\_types.cpp@{project\_types.cpp}}\index{project\_types.cpp@{project\_types.cpp}!blue@{blue}}}\Hypertarget{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a8f5fa6b484ac7e2a97943d915cf224e2}\label{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a8f5fa6b484ac7e2a97943d915cf224e2} 
+blue&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{value@{value}!project\_types.cpp@{project\_types.cpp}}\index{project\_types.cpp@{project\_types.cpp}!value@{value}}}\Hypertarget{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a97de9ab6885342a574053b8f64a563a9}\label{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a97de9ab6885342a574053b8f64a563a9} 
+value&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{project__types_8cpp_a0364760b87bbea8aeb0abbe482c2b18c}\label{project__types_8cpp_a0364760b87bbea8aeb0abbe482c2b18c} 
+\index{project\_types.cpp@{project\_types.cpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!project\_types.cpp@{project\_types.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{output\+\_\+stream,  }\item[{const \mbox{\hyperlink{classObject}{Object}} \&}]{obj }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{project__types_8cpp_a386014f2cb7278f0caa94bb8ec70840a}\label{project__types_8cpp_a386014f2cb7278f0caa94bb8ec70840a} 
+\index{project\_types.cpp@{project\_types.cpp}!ColorMap@{ColorMap}}
+\index{ColorMap@{ColorMap}!project\_types.cpp@{project\_types.cpp}}
+\doxysubsubsection{\texorpdfstring{ColorMap}{ColorMap}}
+{\footnotesize\ttfamily const std\+::map$<$std\+::string, \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78}{Color}}$>$ Color\+Map}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}red"{}},\mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78aace9033470c7bfe9523c814271251908}{Color::red}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}green"{}},\mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a6aa25890c44e0aac424e56338abe47ca}{Color::green}}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}blue"{}},\ \mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a8f5fa6b484ac7e2a97943d915cf224e2}{Color::blue}}\},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{project__types_8cpp_ab452930e5e4f1e5ac14b2354a8001d0b}\label{project__types_8cpp_ab452930e5e4f1e5ac14b2354a8001d0b} 
+\index{project\_types.cpp@{project\_types.cpp}!ReverseColorMap@{ReverseColorMap}}
+\index{ReverseColorMap@{ReverseColorMap}!project\_types.cpp@{project\_types.cpp}}
+\doxysubsubsection{\texorpdfstring{ReverseColorMap}{ReverseColorMap}}
+{\footnotesize\ttfamily const std\+::map$<$\mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78}{Color}}, std\+::string$>$ Reverse\+Color\+Map}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78aace9033470c7bfe9523c814271251908}{Color::red}},\ \textcolor{stringliteral}{"{}red"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a6aa25890c44e0aac424e56338abe47ca}{Color::green}},\ \textcolor{stringliteral}{"{}green"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a8f5fa6b484ac7e2a97943d915cf224e2}{Color::blue}},\ \textcolor{stringliteral}{"{}blue"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{project__types_8cpp_aa574175df6ec2a14da8226eb24c65c78a97de9ab6885342a574053b8f64a563a9}{Color::value}},\ \textcolor{stringliteral}{"{}value"{}}\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
